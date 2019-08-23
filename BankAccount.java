@@ -9,7 +9,11 @@ public class BankAccount
     public BankAccount(double balance, String accountHolder, int accountNumber,
     String password)
     {
-
+        this.balance = balance;
+        this.accountHolder = accountHolder;
+        this.accountNumber = accountNumber;
+        this.password = password;
+        this.loggedIn = false;
     }
     
     //mutator - allow you to change an instance variable (attribute)
@@ -24,6 +28,22 @@ public class BankAccount
     //accessor - gives access to the balance instance variable (attribute)
     public double getBalance()
     {
-        return 0;
+        if (loggedIn)
+        {
+           return balance; 
+            
+        }
+        else
+        {
+            throw new IllegalStateException("You are not logged in.");
+        }
     }  
+
+    //mutator - logs user out
+    public void logOut()
+    {
+       loggedIn = false; 
+    }
+
 }
+
