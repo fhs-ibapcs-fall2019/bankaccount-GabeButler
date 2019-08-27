@@ -58,6 +58,9 @@ public class BankAccount
     {
         if (loggedIn)
         {
+            if (ammount <= 0)
+                throw new IllegalStateException("You need to withdraw a positive amount of money");
+                 
             if (balance >= ammount)
                 balance = balance - ammount;
             else
@@ -76,4 +79,3 @@ public class BankAccount
     }
 
 }
-
