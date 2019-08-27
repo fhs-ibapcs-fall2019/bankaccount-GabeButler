@@ -8,13 +8,12 @@ public class BankAccount
     private double deposit;
     
     public BankAccount(double balance, String accountHolder, int accountNumber,
-    String password, double deposit)
+    String password)
     {
         this.balance = balance;
         this.accountHolder = accountHolder;
         this.accountNumber = accountNumber;
         this.password = password;
-        this.deposit = deposit;
         this.loggedIn = false;
     }
     
@@ -40,11 +39,14 @@ public class BankAccount
         }
     }  
     
-    public double deposit()
+    public void deposit(double ammount)
     {
         if (loggedIn)
         {
-            double balance = this.balance + deposit;
+            if (ammount > 0)
+                balance = balance + ammount;
+            else
+                throw new IllegalStateException("You need to deposit a positive amount of money.");
         }
         else
         {
@@ -52,7 +54,20 @@ public class BankAccount
         }
     }
         
-
+    public void withdraw(double ammount)
+    {
+        if (loggedIn)
+        {
+            if (balance >= ammount)
+                balance = balance - ammount;
+            else
+                throw new IllegalStateException("You don't have that much money in your account.");
+        }
+        else
+        {
+            throw new IllegalStateException("You are not logged in.");
+        }
+    }
        
     //mutator - logs user out
     public void logOut()
