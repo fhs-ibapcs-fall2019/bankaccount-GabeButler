@@ -60,7 +60,7 @@ public class BankAccount
         {
             if (ammount <= 0)
                 throw new IllegalStateException("You need to withdraw a positive amount of money");
-                 
+               
             if (balance >= ammount)
                 balance = balance - ammount;
             else
@@ -71,7 +71,20 @@ public class BankAccount
             throw new IllegalStateException("You are not logged in.");
         }
     }
-       
+    
+    public String toString()
+    {
+      if (loggedIn)
+      {
+         return accountHolder + " Account# " + accountNumber 
+         + " Balance : $" + this.balance;  
+      }
+      else
+      {
+         throw new IllegalStateException("You are not logged in");
+      }
+    }
+    
     //mutator - logs user out
     public void logOut()
     {
@@ -79,3 +92,4 @@ public class BankAccount
     }
 
 }
+
